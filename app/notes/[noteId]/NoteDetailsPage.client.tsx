@@ -1,31 +1,31 @@
-'use client'
+"use client";
 
-import { getSingleNote } from '@/lib/api'
-import { useQuery } from '@tanstack/react-query'
-import { useParams } from 'next/navigation'
-import { useState } from 'react'
+import { getSingleNote } from "@/lib/api";
+import { useQuery } from "@tanstack/react-query";
+import { useParams } from "next/navigation";
+import { useState } from "react";
 
 const NoteDetailsPageClient = () => {
-  const { noteId } = useParams<{ noteId: string }>()
+  const { noteId } = useParams<{ noteId: string }>();
 
   const { data: note } = useQuery({
-    queryKey: ['note', noteId],
+    queryKey: ["note", noteId],
     queryFn: () => getSingleNote(noteId),
     refetchOnMount: false,
-  })
+  });
 
-  const [isEdit, setIsEdit] = useState(false)
+  const [isEdit, setIsEdit] = useState(false);
 
   const handleEdit = () => {
-    setIsEdit(true)
-  }
+    setIsEdit(true);
+  };
 
   return (
     <div>
       <button onClick={handleEdit}>Edit</button>
       {!isEdit ? (
         <>
-          {' '}
+          {" "}
           <h2>{note?.title}</h2>
           <br />
           <hr />
@@ -34,12 +34,12 @@ const NoteDetailsPageClient = () => {
         </>
       ) : (
         <form>
-          <input type='text' placeholder='Title' />
-          <button type='submit'>Update</button>
+          <input type="text" placeholder="Title" />
+          <button type="submit">Update</button>
         </form>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default NoteDetailsPageClient
+export default NoteDetailsPageClient;
