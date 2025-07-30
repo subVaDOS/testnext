@@ -1,16 +1,16 @@
-import NoteList from '@/components/NoteList/NoteList'
-import { getNotes } from '@/lib/api'
+import NoteList from "@/components/NoteList/NoteList";
+import { getNotes } from "@/lib/api";
 
 const Notes = async () => {
-  const response = await getNotes()
+  const response = await getNotes();
   return (
-    <div style={{ paddingInline: '24px' }}>
+    <div style={{ paddingInline: "24px" }}>
       <NoteList notes={response.notes} />
     </div>
-  )
-}
+  );
+};
 
-export default Notes
+export default Notes;
 
 // 'use client'
 // import NoteList from '@/components/NoteList/NoteList'
